@@ -119,3 +119,6 @@ const ListEntries = ({ data, handleDelete, handleRedirect }) => (
   </li>
 );
 
+
+//TODO
+//Ask user whether their sure they want to delete the entry
