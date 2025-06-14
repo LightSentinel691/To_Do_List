@@ -1,0 +1,5 @@
+.calendar-input:invalid {
+  filter: blur(2px);
+  cursor: not-allowed;
+  opacity: 0.6;
+}

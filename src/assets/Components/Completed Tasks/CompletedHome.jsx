@@ -96,6 +96,6 @@ const ListEntries = ({ data, handleDelete }) => (
 
 
 //TODO : 
-//Implement redirection on Clicking Edit Button
+//Implement redirection on Clicking Edit Button - This should be a protected route
 // Work on the UI section now
 //Strike Through for the Date and Title Attribute
