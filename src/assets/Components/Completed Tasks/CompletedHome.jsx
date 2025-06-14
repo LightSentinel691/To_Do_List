@@ -1,6 +1,10 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function CompletedHome() {
+    const navigate = useNavigate();
+
   const reducerList = (state, action) => {
     switch (action.type) {
       case "SET_DATA":
@@ -15,30 +19,26 @@ function CompletedHome() {
   //update state to load the deleted item
   const [Tasks, dispatchTasks] = useReducer(
     reducerList,
-    JSON.parse(localStorage.getItem("username") || null)
+    JSON.parse(localStorage.getItem("completed") || null)
   );
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const completedDetailsObj = Tasks;
     if (completedDetailsObj) {
-      setIsLoading(true);
       dispatchTasks({
         type: "SET_DATA",
         payload: completedDetailsObj,
       });
-      setIsLoading(false);
     } else {
       dispatchTasks({
         type: "NO_DATA",
         payload: completedDetailsObj,
       });
-      setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("username", JSON.stringify(Tasks));
+    localStorage.setItem("completed", JSON.stringify(Tasks));
   }, [Tasks]);
 
   const handleDelete = (item) => {
@@ -49,13 +49,17 @@ function CompletedHome() {
     });
   };
 
+  const handleRedirect = (idValue) => {
+    navigate("./Edit", {state: {id: idValue}})
+  }
+
   return (
     <>
       <div>
         {Tasks === null ? (
           <p>You don't have any completed Tasks Yet</p>
         ) : (
-          <List data={Tasks} handleDelete={handleDelete} />
+          <List data={Tasks} handleDelete={handleDelete} handleRedirect={handleRedirect}/>
         )}
       </div>
     </>
@@ -64,7 +68,7 @@ function CompletedHome() {
 
 export default CompletedHome;
 
-const List = ({ data, handleDelete }) => {
+const List = ({ data, handleDelete, handleRedirect }) => {
   return (
     <ul>
       {data.map((entry) => {
@@ -73,6 +77,7 @@ const List = ({ data, handleDelete }) => {
             key={entry.id}
             data={entry}
             handleDelete={handleDelete}
+            handleRedirect = {handleRedirect}
           />
         );
       })}
@@ -80,12 +85,12 @@ const List = ({ data, handleDelete }) => {
   );
 };
 
-const ListEntries = ({ data, handleDelete }) => (
+const ListEntries = ({ data, handleDelete, handleRedirect }) => (
   <li>
     <span>{data.Date}</span>&nbsp;&nbsp;
     <span>{data.Title}</span> &nbsp;&nbsp;
     <span>
-      <button>Edit</button>
+      <button onClick={()=>handleRedirect(data.id)}>Edit</button>
     </span>
     &nbsp; &nbsp;
     <span>
@@ -95,7 +100,6 @@ const ListEntries = ({ data, handleDelete }) => (
 );
 
 
-//TODO : 
-//Implement redirection on Clicking Edit Button - This should be a protected route
+//TODO :
 // Work on the UI section now
 //Strike Through for the Date and Title Attribute

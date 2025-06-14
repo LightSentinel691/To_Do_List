@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./CompletedTasksStyles.css"; // Ensure styles are applied
+import "./CompletedTasksStyles.css"; // Apply styles
 
 
-const Calendar = () => {
+const Calendar = ({date}) => {
   const [selectedDate, setSelectedDate] = useState("");
   
   useEffect(() => {
-    setSelectedDate("2025-08-15"); // Default selected date
-  }, []);
+    setSelectedDate(date ?? "2025-08-15"); // Default selected date
+  }, [date]);
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
@@ -29,5 +29,3 @@ const Calendar = () => {
 
 export default Calendar;
 
-
-//Pass the Correct Date to Display the event
