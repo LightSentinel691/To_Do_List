@@ -2,8 +2,8 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import CompletedHome from "./assets/Components/Completed Tasks/CompletedHome";
-import EditCompletedTask from "./assets/Components/Completed Tasks/EditCompletedTask";
+import CompletedHome from "./Components/Completed Tasks/CompletedHome";
+import EditCompletedTask from "./Components/Completed Tasks/EditCompletedTask";
 
 function App() {
   const [count, setCount] = useState(0);
