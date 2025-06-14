@@ -119,6 +119,3 @@ const ListEntries = ({ data, handleDelete, handleRedirect }) => (
   </li>
 );
 
-//TODO :
-// Add the title to show section we're in
-//Strike Through for the Date and Title Attribute
