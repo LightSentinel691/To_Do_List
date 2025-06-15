@@ -40,15 +40,17 @@ function CompletedHome() {
     localStorage.setItem("completed", JSON.stringify(Tasks));
   }, [Tasks]);
 
-  const handleDelete = (item) => {
+  const handleDelete = (item, event) => {
     //display the modal window to ask someone whether they are sure they want to delete the entry
+    event.stopPropagation();
     dispatchTasks({
       type: "REMOVE_TASK",
       payload: item.id,
     });
   };
 
-  const handleRedirect = (idValue) => {
+  const handleRedirect = (idValue, event) => {
+    event.stopPropagation();
     navigate("./Edit", { state: { id: idValue } });
   };
 
@@ -94,14 +96,14 @@ const List = ({ data, handleDelete, handleRedirect }) => {
 const ListEntries = ({ data, handleDelete, handleRedirect }) => (
   <li
     className="flex bg-orange-200 ml-3 mr-3 mt-2 p-1 text-center items-center hover:bg-orange-300 hover:shadow-lg hover:shadow-orange-500/50 rounded-2xl"
-    onClick={() => handleRedirect(data.id)}
+    onClick={(e) => handleRedirect(data.id, e)}
   >
     <span className="p-2 w-1/5 line-through">{data.Date}</span>&nbsp;&nbsp;
     <span className="w-3/5 text-lg p-3 line-through">{data.Title}</span>{" "}
     &nbsp;&nbsp;
     <span className="w-1/5 text-white">
       <button
-        onClick={() => handleRedirect(data.id)}
+        onClick={(e) => handleRedirect(data.id, e)}
         className=" bg-red-400 w-full p-3 rounded-lg  hover:bg-green-400"
       >
         Edit
@@ -110,7 +112,7 @@ const ListEntries = ({ data, handleDelete, handleRedirect }) => (
     &nbsp; &nbsp;
     <span className="w-1/5 text-white">
       <button
-        onClick={() => handleDelete(data)}
+        onClick={(e) => handleDelete(data, e)}
         className=" bg-red-400 w-full p-3 rounded-lg  hover:bg-green-400"
       >
         Delete

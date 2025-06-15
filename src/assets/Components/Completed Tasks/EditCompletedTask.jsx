@@ -107,6 +107,8 @@ const EditDeTailsContent = ({ info, handleDelete }) => {
 //Use useReducer to update state as might be under any many sections
 //Function to handle any changed section
 //On Changing the date to a future date, change it to an active to do item
+// Add a update button to update the info
+
 
 
 
