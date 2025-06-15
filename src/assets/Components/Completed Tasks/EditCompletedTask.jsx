@@ -35,6 +35,7 @@ function EditCompletedTask() {
     localStorage.setItem("completed", JSON.stringify(newArr));
     navigate("/")
   };
+  
 
   return (
     <div>
@@ -49,19 +50,18 @@ const EditDeTailsContent = ({ info, handleDelete }) => {
   const { Label, Reminder } = info;
   return (
     <div>
-      <div>
-        <p>{info.Title}</p>
+      <div className="flex justify-center">
+        <p className="w-4/5 bg-orange-200 rounded-lg text-4xl font-semibold text-center p-2 m-2 pt-4 pb-4">{info.Title}</p>
       </div>
-      <div>
-        <p>{info.Description}</p>
+      <div className="flex justify-center h-96 mb-2 ">
+        <p className="w-4/5 bg-gray-200 text-xl pt-4 pl-4 pr-4 rounded-3xl">{info.Description}</p>
       </div>
-      <div>
-        <div>
-          <div>
-            console.log(info);
+      <div className="flex justify-center">
+        <div className="flex text-xl w-4/5 pt-3 pb-3">
+          <div className="w-1/3">
             <Calendar date={info.Date} />
           </div>
-          <div>
+          <div className="w-1/3">
             <label htmlFor="label">Label: </label>
             <select name="label">
               <option value={Label?.[0]}>{Label?.[0]}</option>
@@ -74,7 +74,7 @@ const EditDeTailsContent = ({ info, handleDelete }) => {
               })}
             </select>
           </div>
-          <div>
+          <div className="w-1/3">
             <label htmlFor="reminder">Reminders:</label>
             <select name="reminder">
               <option value={Reminder?.[0]}>{Reminder?.[0]} Mins</option>
@@ -89,8 +89,10 @@ const EditDeTailsContent = ({ info, handleDelete }) => {
             </select>
           </div>
         </div>
-        <div>
-          <button
+      </div>
+      <div>
+        <div className="text-center mt-2">
+          <button className="bg-red-400 hover:bg-green-400 p-3 rounded-lg text-xl"
             onClick={() => {
               handleDelete(info.id);
             }}
