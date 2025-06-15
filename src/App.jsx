@@ -15,8 +15,10 @@ function App() {
       Title: "Project Deadline",
       Description: `Finalize the React project and submit the documentation. 
       Ensure all components are optimized and bugs are resolved.`,
-      Label: ["Work", { education: "Education", home: "Home", personal:"Personal", other: "Other" }],
+      Label: ["Work", { Education: "Education", Home: "Home", Personal:"Personal", Other: "Other" }],
       Reminder: [30, { 15: "15", 45: "45", 60:"60", 10:"10" }],
+      LabelArr: ['Personal', 'Home', 'Education', 'Work',  'Other'],
+      ReminderArr: [10, 15, 30, 45, 60],
     },
     {
       id: 2,
@@ -24,8 +26,10 @@ function App() {
       Title: "Weekend Getaway",
       Description: `Plan a road trip to Naivasha with friends. 
       Pack essentials, confirm reservations, and set up the itinerary.`,
-      Label: ["Personal", { education: "Education", work:"Work", home: "Home", other: "Other" }],
+      Label: ["Personal", { Education: "Education", Work:"Work", Home: "Home", Other: "Other" }],
       Reminder: [10, { 15: "15", 45: "45", 60:"60", 30:"30" }],
+      LabelArr: ['Personal', 'Home', 'Education', 'Work',  'Other'],
+      ReminderArr: [10, 15, 30, 45, 60],
     },
     {
       id: 3,
@@ -33,8 +37,10 @@ function App() {
       Title: "Coding Workshop",
       Description: `Prepare a presentation on advanced React patterns. 
       Include practical examples and interactive exercises for attendees.`,
-      Label: ["Education", { personal:"Personal", home: "Home", other: "Other", work:"Work"}],
+      Label: ["Education", { Personal:"Personal", Home: "Home", Other: "Other", Work:"Work"}],
       Reminder: [60, { 15: "15", 45: "45", 30:"30", 10:"10" }],
+      LabelArr: ['Personal', 'Home', 'Education', 'Work',  'Other'],
+      ReminderArr: [10, 15, 30, 45, 60],
     },
     {
       id: 4,
@@ -42,8 +48,10 @@ function App() {
       Title: "Health Checkup",
       Description: `Schedule an annual medical checkup. 
       Ensure all necessary tests are completed for a comprehensive report.`,
-      Label: ["Other", { personal:"Personal", home: "Home", education: "Education", work:"Work"}],
+      Label: ["Other", { Personal:"Personal", Home: "Home", Education: "Education", Work:"Work"}],
       Reminder: [45, { 15: "15", 30: "30", 60:"60", 10:"10" }],
+      LabelArr: ['Personal', 'Home', 'Education', 'Work',  'Other'],
+      ReminderArr: [10, 15, 30, 45, 60],
     },
   ];
 

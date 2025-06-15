@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./CompletedTasksStyles.css"; // Apply styles
 
 
-const Calendar = ({date}) => {
+const Calendar = ({date, handleInfoChange}) => {
   const [selectedDate, setSelectedDate] = useState("");
   
   useEffect(() => {
@@ -11,6 +11,7 @@ const Calendar = ({date}) => {
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
+    handleInfoChange(event, 'Date');
   };
 
 
