@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-/**
- * A remade, modern modal component for adding a to-do item, styled with Tailwind CSS.
- * Features include animations, a blurred backdrop, custom checkbox, and improved UX.
- * * @param {object} props - The component props.
- * @param {boolean} props.isOpen - Controls whether the modal is visible.
- * @param {function} props.onClose - A function to close the modal.
- * @param {function} props.onAddTask - A function to handle adding the new task.
- */
+
 function TodoModal({ isOpen, onAddTask, onClose }) {
   const initialTaskData = {
     title: '',
@@ -21,7 +14,7 @@ function TodoModal({ isOpen, onAddTask, onClose }) {
   const [taskData, setTaskData] = useState(initialTaskData);
   const [titleError, setTitleError] = useState('');
   
-  // Reset form state when the modal is opened
+  // Reset 
   useEffect(() => {
     if (isOpen) {
       setTaskData(initialTaskData);
@@ -48,7 +41,7 @@ function TodoModal({ isOpen, onAddTask, onClose }) {
       return;
     }
     onAddTask(taskData);
-    onClose(); // Close modal after successful submission
+    onClose(); // Close modal
   };
   
   // Don't render if not open
@@ -109,7 +102,7 @@ function TodoModal({ isOpen, onAddTask, onClose }) {
             />
           </div>
 
-          {/* Grouped Date & Label Fields */}
+          {/* Date & Label Fields */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
               <label htmlFor="date" className="block text-sm font-medium text-gray-700">Due Date</label>
