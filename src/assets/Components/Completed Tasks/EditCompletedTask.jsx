@@ -55,8 +55,7 @@ function EditCompletedTask() {
 
   const handleInfoChange =(event, editedSection) => {
     const editingObject = JSON.parse(localStorage.getItem("completed"));
-    const value = editingObject.find((entry) => entry.id === id)
-    console.log(typeof value[editedSection]);
+    const value = editingObject.find((entry) => entry.id === id);
     const editedValue = [];
     const valuesObj = {};
     if (typeof value[editedSection] === 'string') {
@@ -80,7 +79,6 @@ function EditCompletedTask() {
     }
     const updatedArr = editingObject.filter((task) => task.id !== id);
     updatedArr.push(value);
-    console.log(updatedArr);
     dispatchTaskEdit({
       type: 'EDIT_DISPLAYED_INFO',
       payload: updatedArr,
@@ -100,7 +98,6 @@ export default EditCompletedTask;
 
 const EditDeTailsContent = ({ info, handleDelete, handleInfoChange }) => {
   const { Label, Reminder } = info;
-  console.log(info);
   return (
     <div>
       <div className="flex justify-center">
