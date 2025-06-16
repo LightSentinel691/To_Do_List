@@ -24,16 +24,25 @@ function EditCompletedTask() {
   //Load the Data from the LocaLStorage and update it into our
   const [TaskEdit, dispatchTaskEdit] = useReducer(reducerListEdit, id, initialData);
 
-  useEffect(() => {
+  useEffect(() => { 
     const OBJ = JSON.parse(localStorage.getItem("completed"));
+    const taskObj = OBJ.find((entry) => entry.id === id);
     dispatchTaskEdit({
       type: "DISPLAY_DETAILS",
-      payload: OBJ,
+      payload: taskObj,
     });
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("completed", JSON.stringify(TaskEdit));
+    if (Array.isArray(TaskEdit)) {
+      localStorage.setItem("completed", JSON.stringify(TaskEdit));
+      const updatedObj = JSON.parse(localStorage.getItem("completed"));
+      const updatedSingleObj = updatedObj.find((entry) => entry.id === id);
+      dispatchTaskEdit({
+        type: "DISPLAY_DETAILS",
+        payload: updatedSingleObj,
+      })
+    }
   },[TaskEdit])
 
   const handleDelete = (id) => {
@@ -45,14 +54,15 @@ function EditCompletedTask() {
   };
 
   const handleInfoChange =(event, editedSection) => {
-    const editingObject = {...TaskEdit}
-    const value = editingObject[editedSection];
+    const editingObject = JSON.parse(localStorage.getItem("completed"));
+    const value = editingObject.find((entry) => entry.id === id)
+    console.log(typeof value[editedSection]);
     const editedValue = [];
     const valuesObj = {};
-    if (typeof value === 'string') {
-      editingObject[editedSection] = event.target.value
+    if (typeof value[editedSection] === 'string') {
+      value[editedSection] = event.target.value
     } else {
-      editingObject[`${editedSection}Arr`].forEach(element => {
+      value[`${editedSection}Arr`].forEach(element => {
         if (element === event.target.value) {
           editedValue.push(event.target.value);
         } else if(typeof element === 'number') {
@@ -66,12 +76,14 @@ function EditCompletedTask() {
         }
       });
       editedValue.push(valuesObj);
-      editingObject[editedSection] = editedValue;
+      value[editedSection] = editedValue;
     }
-    //Edit the object then pass it as the state to the onState
+    const updatedArr = editingObject.filter((task) => task.id !== id);
+    updatedArr.push(value);
+    console.log(updatedArr);
     dispatchTaskEdit({
       type: 'EDIT_DISPLAYED_INFO',
-      payload: editingObject,
+      payload: updatedArr,
     })
   }
 
@@ -88,6 +100,7 @@ export default EditCompletedTask;
 
 const EditDeTailsContent = ({ info, handleDelete, handleInfoChange }) => {
   const { Label, Reminder } = info;
+  console.log(info);
   return (
     <div>
       <div className="flex justify-center">
