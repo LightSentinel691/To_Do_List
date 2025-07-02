@@ -58,7 +58,7 @@ function CompletedHome() {
     <>
       <div>
         <h1 className="text-4xl font-bold mb-5 mt-3 text-center">
-          Inbox
+          Completed Tasks
         </h1>
         {Tasks === null ? (
           <p>You don't have any completed Tasks Yet</p>
@@ -99,8 +99,8 @@ const ListEntries = ({ data, handleDelete, handleRedirect }) => (
     className="flex bg-orange-200 ml-3 mr-3 mt-2 p-1 text-center items-center hover:bg-orange-300 hover:shadow-lg hover:shadow-orange-500/50 rounded-2xl"
     onClick={(e) => handleRedirect(data.id, e)}
   >
-    <span className="p-2 w-1/5">{data.date}</span>&nbsp;&nbsp;
-    <span className="w-3/5 text-lg p-3">{data.title}</span>{" "}
+    <span className="p-2 w-1/5 line-through">{data.date}</span>&nbsp;&nbsp;
+    <span className="w-3/5 text-lg p-3 line-through">{data.title}</span>{" "}
     &nbsp;&nbsp;
     <span className="w-1/5 text-white">
       <button
