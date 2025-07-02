@@ -36,6 +36,16 @@ function TodoModal({ isOpen, onAddTask, onClose }) {
     }
   };
 
+   const handleSelectChange = (e) => {
+  const { name, value } = e.target;
+
+  setTaskData((prev) => ({
+    ...prev,
+    [name]: [value], // Store as an array with one selected value
+  }));
+};
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!taskData.title.trim()) {
@@ -122,7 +132,7 @@ function TodoModal({ isOpen, onAddTask, onClose }) {
                 id="label"
                 name="label"
                 value={taskData.label[0]}
-                onChange={handleChange}
+                onChange={handleSelectChange}
                 className="w-full px-3 py-2 pt-3 pb-3 mt-1 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="" disabled>
