@@ -112,9 +112,28 @@ function TodoModal({ isOpen, onAddTask, onClose }) {
                      className="w-full px-3 py-2 mt-1 text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
             </div>
             <div>
-              <label htmlFor="label" className="block text-sm font-medium text-gray-700">Label</label>
-              <input type="text" id="label" name="label" placeholder="e.g., #Work" value={taskData.label[0]} onChange={handleChange}
-                     className="w-full px-3 py-2 mt-1 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+              <label
+                htmlFor="date"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Label
+              </label>
+              <select
+                id="label"
+                name="label"
+                value={taskData.label[0]}
+                onChange={handleChange}
+                className="w-full px-3 py-2 pt-3 pb-3 mt-1 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="" disabled>
+                  Select a label
+                </option>
+                {taskData.labelArr.map((label) => (
+                  <option key={label} value={label}>
+                    {label.charAt(0).toUpperCase() + label.slice(1)}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           
