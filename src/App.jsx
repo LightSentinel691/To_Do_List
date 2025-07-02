@@ -51,7 +51,7 @@ function App() {
     const updatedTasks = [...tasks, { ...newTaskData, id: Date.now() }]; 
     console.log("Updated Tasks", updatedTasks);
     setTasks(updatedTasks);
-    localStorage.setItem('completed', JSON.stringify(updatedTasks));
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
   // localStorage.setItem("completed", JSON.stringify(sampleData));
